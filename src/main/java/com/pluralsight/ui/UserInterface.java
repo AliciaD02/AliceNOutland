@@ -1,5 +1,5 @@
 package com.pluralsight.ui;
-
+import com.pluralsight.models.Burger;
 import java.util.Scanner;
 // this class handles the menu and users input
 
@@ -63,6 +63,7 @@ public class UserInterface {
 
         System.out.println("please choose an option: ");
         String choice = scanner.nextLine();
+
         switch (choice) {
 
             case "1":
@@ -106,9 +107,36 @@ public class UserInterface {
         System.out.print("Choose your burger size: ");
         String burgerChoice = scanner.nextLine();
 
+        String selectedBurger = "";
+        double burgerPrice = 0;
+
         switch (burgerChoice) {
+
             case "1":
-                System.out.println("You chose the Alice Classic 👑");
+                selectedBurger = "Alice Classic";
+                burgerPrice = 8.99;
+                System.out.println("You chose the👑 Alice Classic 👑");
+                break;
+
+            case "2":
+                selectedBurger = "Mad Hatter Double";
+                burgerPrice = 11.99;
+                System.out.println("You chose the 🎩 Mad Hatter Double 🎩");
+                break;
+
+            case "3":
+                selectedBurger = "Queen of Hearts Triple";
+                burgerPrice = 13.99;
+
+                System.out.println("You chose the ❤️ Queen of Hearts Triple ❤️");
+                break;
+
+            default:
+                System.out.println("Invalid burger choice.");
+                return;
+
+        }
+
                 // this is for user to input the bun selection
                 System.out.println("\n🥯 Choose your bun:");
                 System.out.println("1) Classic Bun");
@@ -117,9 +145,28 @@ public class UserInterface {
                 System.out.print("Please choose a bun: ");
 
                 String bunChoice = scanner.nextLine();
-                System.out.println("You selected bun option: " + bunChoice);
+                String selectedBun = "";
+                 switch (bunChoice) {
 
+                     case   "1":
+                         selectedBun = "Classic Bun";
+                         break;
+                     case "2":
+                         selectedBun = "Brioche Bun";
+                         break;
+                     case "3":
+                         selectedBun = "Lettuce Wrap";
+                         break;
 
+                     default:
+                         selectedBun = "Unknown Bun";
+
+                 }
+
+        Burger burger = new Burger(
+                selectedBurger,
+                selectedBun,
+                burgerPrice);
                 // topping selection but will be a while loop for users selection
                 boolean addingToppings = true;
                 while (addingToppings){
@@ -142,22 +189,27 @@ public class UserInterface {
 
                     case "1":
                         System.out.println("Lettuce added");
+                        burger.addTopping("Lettuce");
                         break;
 
                     case "2":
                         System.out.println("Tomatoes added");
+                        burger.addTopping("Ketchup");
                         break;
 
                     case "3":
                         System.out.println("Pickles added");
+                        burger.addSauce("Pickles");
                         break;
 
                     case "4":
                         System.out.println("Onion added");
+                        burger.addSauce("Onion");
                         break;
 
                     case "5":
                         System.out.println("Cheese added");
+                        burger.addTopping("Lettuce");
                         break;
 
                     case "exit":
@@ -191,14 +243,17 @@ public class UserInterface {
 
                     case "1":
                         System.out.println("Outland Sauce added");
+                        burger.addSauce("Outland Sauce");
                         break;
 
                     case "2":
                         System.out.println("Ketchup added");
+                        burger.addSauce("Ketchup");
                         break;
 
                     case "3":
                         System.out.println("Ranch added");
+                        burger.addSauce("Ranch");
                         break;
 
                     case "0":
@@ -211,25 +266,20 @@ public class UserInterface {
                 }
 }
 
-
-                break;
-
+             //   break;
 
 
-            case "2":
-                System.out.println("You chose the Mad Hatter Double 🎩");
-                break;
 
-            case "3":
-                System.out.println("You chose the Queen of Hearts Triple ❤️");
-                break;
+        System.out.println("You selected bun option: " + bunChoice);
 
-            default:
-                System.out.println("Invalid burger choice.");
-        }
+        System.out.println("\n🍔 Burger Created!");
+        System.out.println("Burger: " + burger.getBurgerName());
+        System.out.println("Bun: " + burger.getBunType());
+        System.out.println("Price: $" + burger.getPrice());
+        System.out.println("Toppings: " + burger.getToppings());
+        System.out.println("Sauces: " + burger.getSauces());
+
 
     }
-
-
 
 }
