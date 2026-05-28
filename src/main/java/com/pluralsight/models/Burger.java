@@ -43,6 +43,9 @@ public class Burger {
     public void addSauce(String sauce) {
         sauces.add(sauce);
     }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public ArrayList<String> getToppings() {
         return toppings;

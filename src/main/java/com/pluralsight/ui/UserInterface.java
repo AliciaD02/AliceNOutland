@@ -1,13 +1,21 @@
 package com.pluralsight.ui;
 import com.pluralsight.models.Burger;
+import com.pluralsight.models.Order;
 import java.util.Scanner;
+import com.pluralsight.models.Drink;
+import com.pluralsight.models.Fries;
+import com.pluralsight.util.ReceiptWriter;
 // this class handles the menu and users input
 
 public class UserInterface {
     // creating ome scanner for the whole class
     Scanner scanner = new Scanner(System.in);
 
+    // UI will share one order (every burger will go into variable)
+    Order currentOrder = new Order();
     //  displaying the home screen menu
+
+
     public void showHomeScreen() {
         boolean running = true;
         // repeat the menu while the app is running
@@ -46,6 +54,9 @@ public class UserInterface {
         }
     }
 
+
+
+
     public void showOrderMenu() {
         //Display the order menu
 
@@ -54,46 +65,46 @@ public class UserInterface {
         while (ordering) {
 
 
-        System.out.println("\n🍟 Mad Hatter Menu 🍟");
-        System.out.println("1) Add Burger");
-        System.out.println("2) Add Drink");
-        System.out.println("3) Add Fries");
-        System.out.println("4) Checkout");
-        System.out.println("0) Cancel Order");
+            System.out.println("\n 🎩 Mad Hatter Menu 🎩");
+            System.out.println("1) Add Burger");
+            System.out.println("2) Add Drink");
+            System.out.println("3) Add Fries");
+            System.out.println("4) Checkout");
+            System.out.println("0) Cancel Order");
 
-        System.out.println("please choose an option: ");
-        String choice = scanner.nextLine();
+            System.out.println("please choose an option: ");
+            String choice = scanner.nextLine();
 
-        switch (choice) {
+            switch (choice) {
 
-            case "1":
-                addBurger();
-                break;
+                case "1":
+                    addBurger();
+                    break;
 
-            case "2":
-                System.out.println("🥤 Adding drink...");
-                break;
+                case "2":
+                    addDrink();
+                    break;
 
-            case "3":
-                System.out.println("🍟 Adding fries...");
-                break;
+                case "3":
+                    addFries();
+                    break;
 
-            case "4":
-                System.out.println("🧾 Checking out...");
+                case "4":
+                    checkout();
+                    ordering = false;
+                    break;
 
-                ordering = false;
-                break;
+                case "0":
+                    System.out.println(" Order cancelled.");
+                    ordering = false;
+                    break;
 
-            case "0":
-                System.out.println("❌ Order cancelled.");
-                ordering = false;
-                break;
-
-            default:
-                System.out.println("Invalid choice. Please try again.");
-        }
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
         }
     }
+
       // made the method for the burgers
     public void addBurger() {
 
@@ -137,136 +148,134 @@ public class UserInterface {
 
         }
 
-                // this is for user to input the bun selection
-                System.out.println("\n🥯 Choose your bun:");
-                System.out.println("1) Classic Bun");
-                System.out.println("2) Brioche Bun");
-                System.out.println("3) Lettuce Wrap ");
-                System.out.print("Please choose a bun: ");
+        // this is for user to input the bun selection
+        System.out.println("\n Choose your bun:");
+        System.out.println("1) Classic Bun");
+        System.out.println("2) Brioche Bun");
+        System.out.println("3) Lettuce Wrap ");
+        System.out.print("Please choose a bun: ");
 
-                String bunChoice = scanner.nextLine();
-                String selectedBun = "";
-                 switch (bunChoice) {
+        String bunChoice = scanner.nextLine();
+        String selectedBun = "";
+        switch (bunChoice) {
 
-                     case   "1":
-                         selectedBun = "Classic Bun";
-                         break;
-                     case "2":
-                         selectedBun = "Brioche Bun";
-                         break;
-                     case "3":
-                         selectedBun = "Lettuce Wrap";
-                         break;
+            case "1":
+                selectedBun = "Classic Bun";
+                break;
+            case "2":
+                selectedBun = "Brioche Bun";
+                break;
+            case "3":
+                selectedBun = "Lettuce Wrap";
+                break;
 
-                     default:
-                         selectedBun = "Unknown Bun";
+            default:
+                selectedBun = "Unknown Bun";
 
-                 }
+
+        }
 
         Burger burger = new Burger(
                 selectedBurger,
                 selectedBun,
                 burgerPrice);
-                // topping selection but will be a while loop for users selection
-                boolean addingToppings = true;
-                while (addingToppings){
+        // topping selection but will be a while loop for users selection
+        boolean addingToppings = true;
+        while (addingToppings) {
 
 
-                System.out.println("\n Choose toppings: ");
-                System.out.println("1) Lettuce");
-                System.out.println("2) Tomatoes");
-                System.out.println("3) Pickles");
-                System.out.println("4) Onions");
-                    System.out.println("5) cheese");
-                    System.out.println("Type 'exit' when finished ");
+            System.out.println("\n Choose toppings: ");
+            System.out.println("1) Lettuce");
+            System.out.println("2) Tomatoes");
+            System.out.println("3) Pickles");
+            System.out.println("4) Onions");
+            System.out.println("5) cheese");
+            System.out.println("Type 'exit' when finished ");
 
-                System.out.print("Choose a topping: ");
-                String toppingChoice = scanner.nextLine().toLowerCase();
-
-
-
-                switch (toppingChoice) {
-
-                    case "1":
-                        System.out.println("Lettuce added");
-                        burger.addTopping("Lettuce");
-                        break;
-
-                    case "2":
-                        System.out.println("Tomatoes added");
-                        burger.addTopping("Ketchup");
-                        break;
-
-                    case "3":
-                        System.out.println("Pickles added");
-                        burger.addSauce("Pickles");
-                        break;
-
-                    case "4":
-                        System.out.println("Onion added");
-                        burger.addSauce("Onion");
-                        break;
-
-                    case "5":
-                        System.out.println("Cheese added");
-                        burger.addTopping("Lettuce");
-                        break;
-
-                    case "exit":
-                        addingToppings = false;
-                        break;
-
-                    default:
-                        System.out.println("Invalid topping choice. ");
+            System.out.print("Choose a topping: ");
+            String toppingChoice = scanner.nextLine().toLowerCase();
 
 
+            switch (toppingChoice) {
+
+                case "1":
+                    System.out.println("Lettuce added");
+                    burger.addTopping("Lettuce");
+                    break;
+
+                case "2":
+                    System.out.println("Tomatoes added");
+                    burger.addTopping("Tomatoes");
+                    break;
+
+                case "3":
+                    System.out.println("Pickles added");
+                    burger.addTopping("Pickles");
+                    break;
+
+                case "4":
+                    System.out.println("Onion added");
+                    burger.addTopping("Onion");
+                    break;
+
+                case "5":
+                    System.out.println("Cheese added");
+                    burger.addTopping("Cheese");
+                    burger.setPrice(burger.getPrice() + 1.00);
+                    break;
+
+                case "exit":
+                    addingToppings = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid topping choice. ");
 
 
-                }
-                }
+            }
+        }
 
-                // sauce selection
-                boolean addingSauces = true;
-                while (addingSauces) {
+        // sauce selection
+        boolean addingSauces = true;
+        while (addingSauces) {
+
+            System.out.println("\n🧂 Choose your sauce:");
+            System.out.println("1) Outland Sauce");
+            System.out.println("2) Ketchup");
+            System.out.println("3) Ranch");
+            System.out.println("0) Done with sauces");
+
+            System.out.print("Choose a sauce: ");
+            String sauceChoice = scanner.nextLine();
+
+            switch (sauceChoice) {
+
+                case "1":
+                    System.out.println("Outland Sauce added");
+                    burger.addSauce("Outland Sauce");
+                    break;
+
+                case "2":
+                    System.out.println("Ketchup added");
+                    burger.addSauce("Ketchup");
+                    break;
+
+                case "3":
+                    System.out.println("Ranch added");
+                    burger.addSauce("Ranch");
+                    break;
+
+                case "0":
+                    addingSauces = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid sauce choice.");
+
+            }
+        }
 
 
-                System.out.println("\n🧂 Choose your sauce:");
-                System.out.println("1) Outland Sauce");
-                System.out.println("2) Ketchup");
-                System.out.println("3) Ranch");
-                    System.out.println("0) Done with sauces");
-
-                System.out.print("Choose a sauce: ");
-                String sauceChoice = scanner.nextLine();
-
-                switch (sauceChoice) {
-
-                    case "1":
-                        System.out.println("Outland Sauce added");
-                        burger.addSauce("Outland Sauce");
-                        break;
-
-                    case "2":
-                        System.out.println("Ketchup added");
-                        burger.addSauce("Ketchup");
-                        break;
-
-                    case "3":
-                        System.out.println("Ranch added");
-                        burger.addSauce("Ranch");
-                        break;
-
-                    case "0":
-                        addingSauces = false;
-                        break;
-
-                    default:
-                        System.out.println("Invalid sauce choice.");
-
-                }
-}
-
-             //   break;
 
 
 
@@ -279,7 +288,150 @@ public class UserInterface {
         System.out.println("Toppings: " + burger.getToppings());
         System.out.println("Sauces: " + burger.getSauces());
 
+        // add completed burger into the order
+        currentOrder.addBurger(burger);
+        System.out.println(" Burger added to order!");
 
     }
+
+public void addDrink () {
+
+    System.out.println("\n🥤 Drink Menu 🥤");
+
+    System.out.println("Choose a size:");
+    System.out.println("1) Small");
+    System.out.println("2) Medium");
+    System.out.println("3) Large");
+
+    System.out.print("Choose a size: ");
+    String drinkSize = scanner.nextLine();
+
+    String selectedSize = "";
+    double drinkPrice = 0;
+
+    switch (drinkSize) {
+
+        case "1":
+            selectedSize = "Small";
+            drinkPrice = 2.49;
+            break;
+
+        case "2":
+            selectedSize = "Medium";
+            drinkPrice = 3.49;
+            break;
+
+        case "3":
+            selectedSize = "Large";
+            drinkPrice = 4.49;
+            break;
+
+        default:
+            System.out.println("Invalid drink choice.");
+            return;
+    }
+
+    System.out.print("Enter drink flavor: ");
+    String flavor = scanner.nextLine();
+
+    Drink drink = new Drink(selectedSize, flavor, drinkPrice);
+
+    currentOrder.addDrink(drink);
+
+    System.out.println("🥤 Drink added to order!");
+}
+
+
+public void addFries () {
+
+    System.out.println("\n🍟 Mad Hatter Fries 🍟");
+
+    System.out.println("Choose a size:");
+    System.out.println("1) Small");
+    System.out.println("2) Medium");
+    System.out.println("3) Large");
+
+    System.out.print("Choose a size: ");
+    String friesChoice = scanner.nextLine();
+
+    String selectedSize = "";
+    double friesPrice = 0;
+
+    switch (friesChoice) {
+
+        case "1":
+            selectedSize = "Small";
+            friesPrice = 2.99;
+            break;
+
+        case "2":
+            selectedSize = "Medium";
+            friesPrice = 3.99;
+            break;
+
+        case "3":
+            selectedSize = "Large";
+            friesPrice = 4.99;
+            break;
+
+        default:
+            System.out.println("Invalid fries choice.");
+            return;
+    }
+
+
+    Fries fries = new Fries(selectedSize, friesPrice);
+
+    currentOrder.addFries(fries);
+
+    System.out.println("🍟 Fries added to order!");
+}
+
+
+
+    public void checkout() {
+        System.out.println("\n🧾 Alice N' Outland Receipt Preview 🧾");
+
+        // want to print out a rabbit holding a burger lol
+        printRabbit();
+
+
+
+        for (Burger burger : currentOrder.getBurgers()) {
+            System.out.println("---------------------------");
+            System.out.println("Burger: " + burger.getBurgerName());
+            System.out.println("Bun: " + burger.getBunType());
+            System.out.println("Toppings: " + burger.getToppings());
+            System.out.println("Sauces: " + burger.getSauces());
+            System.out.println("Price: $" + burger.getPrice());
+        }
+
+
+
+
+        for (Drink drink : currentOrder.getDrinks()) {
+            System.out.println("---------------------------");
+            System.out.println("Drink: " + drink.getSize() + " " + drink.getFlavor());
+            System.out.println("Price: $" + drink.getPrice());
+        }
+
+        for (Fries fry : currentOrder.getFries()) {
+            System.out.println("---------------------------");
+            System.out.println("Fries: " + fry.getSize());
+            System.out.println("Price: $" + fry.getPrice());
+        }
+        System.out.println("---------------------------");
+        System.out.println("TOTAL: $" + currentOrder.getTotal());
+
+    // this will save the receipt file
+        ReceiptWriter.saveReceipt(currentOrder);
+
+    }
+    public void printRabbit() {
+        System.out.println(" (\\_/\\\\");
+        System.out.println(" ( •.•)");
+        System.out.println(" / >🍔");
+    }
+
 
 }
