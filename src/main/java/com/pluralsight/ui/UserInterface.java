@@ -125,19 +125,19 @@ public class UserInterface {
 
             case "1":
                 selectedBurger = "Alice Classic";
-                burgerPrice = 8.99;
+                burgerPrice = 7.99;
                 System.out.println("You chose the👑 Alice Classic 👑");
                 break;
 
             case "2":
                 selectedBurger = "Mad Hatter Double";
-                burgerPrice = 11.99;
+                burgerPrice = 10.99;
                 System.out.println("You chose the 🎩 Mad Hatter Double 🎩");
                 break;
 
             case "3":
                 selectedBurger = "Queen of Hearts Triple";
-                burgerPrice = 13.99;
+                burgerPrice = 12.99;
 
                 System.out.println("You chose the ❤️ Queen of Hearts Triple ❤️");
                 break;
@@ -239,7 +239,7 @@ public class UserInterface {
         boolean addingSauces = true;
         while (addingSauces) {
 
-            System.out.println("\n🧂 Choose your sauce:");
+            System.out.println("\n Choose your sauce:");
             System.out.println("1) Outland Sauce");
             System.out.println("2) Ketchup");
             System.out.println("3) Ranch");
@@ -384,18 +384,26 @@ public void addFries () {
 
     currentOrder.addFries(fries);
 
-    System.out.println("🍟 Fries added to order!");
+    System.out.println("🍟 Fries added to order");
 }
 
 
 
     public void checkout() {
-        System.out.println("\n🧾 Alice N' Outland Receipt Preview 🧾");
+      //  System.out.println("\n🧾 Alice N' Outland Receipt Preview 🧾");
+
+
+        System.out.println("♥----------------------------------♥");
+        System.out.println("      ALICE N' OUTLAND RECEIPT      ");
+        System.out.println("♥----------------------------------♥");
+        System.out.println("A♥                                A♥");
+        System.out.println("♦                                  ♦");
 
         // want to print out a rabbit holding a burger lol
         printRabbit();
 
-
+        System.out.println("♣                              ♣");
+        System.out.println("♥----------------------------------♥");
 
         for (Burger burger : currentOrder.getBurgers()) {
             System.out.println("---------------------------");
@@ -420,10 +428,17 @@ public void addFries () {
             System.out.println("Fries: " + fry.getSize());
             System.out.println("Price: $" + fry.getPrice());
         }
-        System.out.println("---------------------------");
-        System.out.println("TOTAL: $" + currentOrder.getTotal());
 
-    // this will save the receipt file
+
+        System.out.println("♥----------------------------------♥");
+        System.out.println("TOTAL: $" + currentOrder.getTotal());
+        System.out.println("♥ Thank you for dining in Wonderland! ♥");
+
+        printCat();
+
+        System.out.println(" Follow the White Rabbit back soon! ");
+        System.out.println("♥----------------------------------♥");
+
         ReceiptWriter.saveReceipt(currentOrder);
 
     }
@@ -433,5 +448,14 @@ public void addFries () {
         System.out.println(" / >🍔");
     }
 
+    public void printCat() {
+        System.out.println("      /\\___/\\\\");
+        System.out.println("     (  o o  )");
+        System.out.println("     /   ^   \\\\");
+        System.out.println("    /|_______|\\\\");
+        System.out.println("      /     \\\\");
+        System.out.println("     /_/   \\_\\\\");
+        System.out.println("  We're all mad here...");
+    }
+    }
 
-}
