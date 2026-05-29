@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+// this is the file for the receipt
 
     public class ReceiptWriter {
 
         public static void saveReceipt(Order order) {
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
             String timestamp = LocalDateTime.now().format(formatter);
                // receipts being saved in this file
             String fileName = "src/main/resources/receipts/" + timestamp + ".txt";
@@ -67,13 +68,13 @@ import java.time.format.DateTimeFormatter;
 
                 writer.close();
 
-                System.out.println("🧾 Receipt saved successfully!");
+
 
             } catch (IOException e) {
                 System.out.println("Error saving receipt.");
              e.printStackTrace();
 
-                // want to add the date and time to know
+
             }
         }
     }
