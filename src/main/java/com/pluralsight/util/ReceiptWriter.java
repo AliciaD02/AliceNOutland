@@ -11,11 +11,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// this is the file for the receipt
+// this is the file that will save users receipt
 
     public class ReceiptWriter {
 
         public static void saveReceipt(Order order) {
+           //    used BufferWritter/ FileWritter to write the receipt into my resources/receipt folder
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
             String timestamp = LocalDateTime.now().format(formatter);

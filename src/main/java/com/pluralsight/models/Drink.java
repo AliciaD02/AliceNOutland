@@ -12,17 +12,20 @@ public class Drink {
             this.flavor = flavor;
             this.price = price;
         }
-
+     // Only getters the size, flavor,and price do not change
         public String getSize() {
             return size;
         }
 
-        public String getFlavor() {
-            return flavor;
+          public String getFlavor() {
+             return flavor;
         }
 
-        public double getPrice() {
+         public double getPrice() {
             return price;
+
         }
+
+
 
 }

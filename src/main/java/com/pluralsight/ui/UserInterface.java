@@ -34,8 +34,6 @@ public class UserInterface {
             // so the user can input his choice
             String choice = scanner.nextLine();
 
-            //System.out.println("You selected: " + choice);
-
 
             switch (choice) {
 
@@ -277,8 +275,6 @@ public class UserInterface {
 
 
 
-
-
         System.out.println("You selected bun option: " + bunChoice);
 
 
@@ -290,7 +286,6 @@ public class UserInterface {
 
         // add completed burger into the order
         currentOrder.addBurger(burger);
-
 
     }
 
@@ -390,7 +385,6 @@ public void addFries () {
 
 
     public void checkout() {
-      //  System.out.println("\n🧾 Alice N' Outland Receipt Preview 🧾");
 
 
         System.out.println("♥------------------------------------♥");
@@ -433,7 +427,7 @@ public void addFries () {
         System.out.println("♥---------------------------------- ♥");
         System.out.println("TOTAL: $" + currentOrder.getTotal());
         System.out.println("♥Thank you for dining in Wonderland!♥");
-
+        // printed the cat
         printCat();
 
         System.out.println(" Follow the White Rabbit back soon! ");

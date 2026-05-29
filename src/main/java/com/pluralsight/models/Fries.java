@@ -9,6 +9,7 @@ public class Fries {
             this.price = price;
         }
 
+        // Only getters sizes and prices do not change
         public String getSize() {
             return size;
         }

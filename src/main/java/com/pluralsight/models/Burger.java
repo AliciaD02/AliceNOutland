@@ -23,7 +23,7 @@ public class Burger {
     }
 
     // adding the getters and setters lol
-
+  // getburger and get bun only need getter value does not change
     public String getBurgerName() {
         return burgerName;
     }
@@ -32,28 +32,28 @@ public class Burger {
         return bunType;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
     public void addTopping(String topping) {
         toppings.add(topping);
     }
-
-    public void addSauce(String sauce) {
-        sauces.add(sauce);
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public ArrayList<String> getToppings() {
         return toppings;
+    }
+    public void addSauce(String sauce) {
+        sauces.add(sauce);
     }
 
     public ArrayList<String> getSauces() {
         return sauces;
     }
+
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
 
 
 
