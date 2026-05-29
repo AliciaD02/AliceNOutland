@@ -1,0 +1,9 @@
+Alice N' Outland Receipt
+---------------------------
+Burger: Queen of Hearts Triple
+Bun: Classic Bun
+Toppings: [Lettuce, Tomatoes, Cheese]
+Sauces: [Outland Sauce]
+Price: $13.99
+---------------------------
+TOTAL: $13.99
